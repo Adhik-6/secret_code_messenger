@@ -1,5 +1,3 @@
-// 10.144.1.172:8080
-// 192.168.56.1:5172
 
 import React, { useState } from "react";
 
