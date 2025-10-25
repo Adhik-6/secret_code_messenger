@@ -1,10 +1,11 @@
-
-import React, { useState } from "react";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function App() {
   const [message, setMessage] = useState("");
   const [encoded, setEncoded] = useState("");
   const [shareLink, setShareLink] = useState("");
+  const navigate = useNavigate();
 
   // Encode via backend
   const encodeMessage = async () => {
@@ -15,6 +16,7 @@ export default function App() {
       body: JSON.stringify({ message }),  // send as JSON
     });
     const data = await res.json();
+    // console.log(data);
     setEncoded(data.encoded);
     setShareLink(`${window.location.origin}/decode?msg=${data.encoded}`);
   };
@@ -30,12 +32,10 @@ export default function App() {
         className="w-full max-w-lg p-3 rounded-lg bg-gray-800 border border-gray-600 focus:outline-none mb-4"
       />
 
-      <button
-        onClick={encodeMessage}
-        className="px-6 py-2 bg-blue-600 hover:bg-blue-700 rounded-lg mb-6"
-      >
-        Encode & Share
-      </button>
+      <div className="flex gap-8">
+        <button onClick={encodeMessage} className="px-6 py-2 bg-blue-600 hover:bg-blue-700 rounded-lg mb-6">Encode & Share</button>
+        <button onClick={() => navigate("/decode")} className="px-6 py-2 bg-blue-600 hover:bg-blue-700 rounded-lg mb-6">Try Decoding</button>
+      </div>
 
       {encoded && (
         <div className="w-full max-w-lg bg-gray-800 p-4 rounded-lg mb-6">
