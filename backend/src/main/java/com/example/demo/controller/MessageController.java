@@ -1,5 +1,5 @@
 package com.example.demo.controller;
-
+// mvn spring-boot:run
 import com.example.demo.model.Message;
 import com.example.demo.repository.MessageRepo;
 import com.example.demo.service.CipherService;
